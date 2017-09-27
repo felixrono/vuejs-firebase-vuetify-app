@@ -1,28 +1,22 @@
 <template>
   <v-app id="example-1" toolbar footer>
     <v-navigation-drawer
+      persistent
       v-model="drawer"
       light
       enable-resize-watcher
       absolute
     >
-      <v-list dense>
-        <v-list-tile @click="">
+            <v-list>
+        <v-list-tile
+          v-for="item in menuItems"
+          :key="item.title"
+          :to="item.link">
           <v-list-tile-action>
-            <v-icon>home</v-icon>
+            <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Home</v-list-tile-title>
-          </v-list-tile-content>
+          <v-list-tile-content>{{ item.title }}</v-list-tile-content>
         </v-list-tile>
-                <v-list-tile @click="">
-                <v-list-tile-action>
-                  <v-icon>supervisor_account</v-icon>
-                </v-list-tile-action>
-                <v-list-tile-content>
-                  <v-list-tile-title>View Meetups</v-list-tile-title>
-                </v-list-tile-content>
-                </v-list-tile>
       </v-list>
 
     </v-navigation-drawer>
@@ -53,6 +47,14 @@
     data() {
       return {
         drawer: true,
+        menuItems: [
+          { icon: 'home', title: 'Home', link: '/' },
+          { icon: 'supervisor_account', title: 'View Meetups', link: '/meetups' },
+          { icon: 'room', title: 'Organize Meetup', link: '/meetup/new' },
+          { icon: 'person', title: 'Profile', link: '/profile' },
+          { icon: 'face', title: 'Sign up', link: '/signup' },
+          { icon: 'lock_open', title: 'Sign in', link: '/signin' },
+        ],
       };
     },
   };
